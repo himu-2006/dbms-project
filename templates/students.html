@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title or 'Students' }}</title>
+  </head>
+  <body>
+    <h1>{{ title or 'Students' }}</h1>
+    <div id="students-list">Students UI will render here.</div>
+    {% include '_debug_overlay.html' %}
+  </body>
+</html>
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <div class="row space">
+    <div>
+      <h2>Students</h2>
+      <p class="muted">Add students (single or CSV)</p>
+    </div>
+    <div class="form-inline">
+      <input id="studRoll" placeholder="Roll no" />
+      <input id="studName" placeholder="Name" />
+      <input id="studDept" placeholder="Dept" />
+      <input id="studYear" type="number" placeholder="Year" min="1" max="5" />
+      <button id="addStudent" class="btn">Add</button>
+    </div>
+  </div>
+
+  <table class="table" id="studentsTable">
+    <thead><tr><th>Roll</th><th>Name</th><th>Dept</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+{% endblock %}

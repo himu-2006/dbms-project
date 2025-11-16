@@ -1,0 +1,33 @@
+<div id="debug-overlay" style="position:fixed;right:12px;bottom:12px;z-index:9999;font-family:Segoe UI,Arial,monospace">
+  <button id="dbg-toggle" style="padding:6px 8px;font-size:12px">API JSON</button>
+  <div id="dbg-panel" style="display:none;margin-top:6px;width:420px;max-height:360px;overflow:auto;background:#ffffffcc;border:1px solid #bbb;padding:8px;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.15)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <strong style="font-size:12px">/api/state</strong>
+      <div>
+        <button id="dbg-refresh" style="padding:4px 6px;font-size:11px">Refresh</button>
+      </div>
+    </div>
+    <pre id="dbg-content" style="white-space:pre-wrap;font-size:12px;line-height:1.2;margin:0">(click API JSON)</pre>
+  </div>
+</div>
+<script>
+async function dbgFetch(){
+  const out = document.getElementById('dbg-content');
+  out.textContent = 'loading...';
+  try{
+    const r = await fetch('/api/state');
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const j = await r.json();
+    out.textContent = JSON.stringify(j, null, 2);
+  }catch(e){
+    out.textContent = 'ERROR: '+String(e);
+  }
+}
+document.getElementById('dbg-toggle').addEventListener('click', ()=>{
+  const p = document.getElementById('dbg-panel');
+  if(p.style.display === 'none'){
+    p.style.display = 'block'; dbgFetch();
+  } else p.style.display = 'none';
+});
+document.getElementById('dbg-refresh').addEventListener('click', dbgFetch);
+</script>

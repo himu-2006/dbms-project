@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title or 'Invigilators' }}</title>
+  </head>
+  <body>
+    <h1>{{ title or 'Invigilators' }}</h1>
+    <div id="invigilators-list">Invigilators UI will render here.</div>
+    {% include '_debug_overlay.html' %}
+  </body>
+</html>
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <div class="row space">
+    <div>
+      <h2>Invigilators</h2>
+    </div>
+    <div class="form-inline">
+      <input id="invName" placeholder="Name" />
+      <input id="invEmp" placeholder="Emp no" />
+      <input id="invDept" placeholder="Dept" />
+      <button id="addInv" class="btn">Add</button>
+    </div>
+  </div>
+
+  <table class="table" id="invTable">
+    <thead><tr><th>Name</th><th>Emp</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+{% endblock %}

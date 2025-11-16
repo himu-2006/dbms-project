@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title or 'Exams' }}</title>
+  </head>
+  <body>
+    <h1>{{ title or 'Exams' }}</h1>
+    <div id="exams-list">Exams UI will render here.</div>
+    {% include '_debug_overlay.html' %}
+  </body>
+</html>
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <div class="row space">
+    <div>
+      <h2>Exams</h2>
+      <p class="muted">Create / view exam slots</p>
+    </div>
+    <div class="form-inline">
+      <input id="examCourse" placeholder="Course code e.g. CS101" />
+      <input id="examDate" type="date" />
+      <input id="examStart" type="time" />
+      <input id="examEnd" type="time" />
+      <button id="addExam" class="btn">Add</button>
+    </div>
+  </div>
+
+  <table class="table" id="examsTable">
+    <thead><tr><th>Course</th><th>Date</th><th>Time</th><th>Regs</th><th>Actions</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+{% endblock %}

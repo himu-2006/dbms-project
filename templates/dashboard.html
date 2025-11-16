@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title or 'Dashboard' }}</title>
+  </head>
+  <body>
+    <h1>{{ title or 'Dashboard' }}</h1>
+    <p>Page: {{ page or 'dashboard' }}</p>
+    <div id="content">Dashboard content goes here.</div>
+    {% include '_debug_overlay.html' %}
+  </body>
+</html>
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <div class="row space">
+    <div>
+      <h2>Dashboard</h2>
+      <p class="muted">Quick stats & upcoming exam</p>
+    </div>
+  </div>
+
+  <div class="grid stats">
+    <div class="stat">
+      <div class="muted">Exams</div>
+      <div id="statExams" class="big">—</div>
+    </div>
+    <div class="stat">
+      <div class="muted">Students</div>
+      <div id="statStudents" class="big">—</div>
+    </div>
+    <div class="stat">
+      <div class="muted">Rooms</div>
+      <div id="statRooms" class="big">—</div>
+    </div>
+  </div>
+
+  <div class="card small">
+    <h3>Upcoming</h3>
+    <div id="examPreview">—</div>
+  </div>
+</section>
+{% endblock %}
